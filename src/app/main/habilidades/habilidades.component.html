@@ -1,0 +1,50 @@
+<section class="container">
+  <div class="container habilidades">
+    <div class="titulo">
+      <h2>Habilidades</h2>
+      <div class="botones">
+        <i class="bi bi-plus-square pointer" (click)="agregarSkill = !agregarSkill; cancelarEdicion()" *ngIf="logIn()"></i>
+        <i class="bi bi-pencil-square pointer" (click)="editarSkill = !editarSkill; modoEdicionSkill = -1"
+          *ngIf="logIn()"></i>
+      </div>
+    </div>
+    <div>
+      <div class="habilidad" *ngFor="let habilidad of habilidades; let i = index">
+        <h3>{{ habilidad.nombre }}</h3>
+        <div class="estrellas" *ngIf="!(modoEdicionSkill == i)">
+          <span [innerHTML]="estrellas[habilidad.nivel]"></span>
+          <i class="bi bi-pencil-square pointer" *ngIf="editarSkill"
+            (click)="modoEdicionSkill = i; nivel = habilidad.nivel"></i>
+          <i class="bi bi-trash3 pointer" (click)="eliminarHabilidad(habilidad)" *ngIf="editarSkill"></i>
+        </div>
+
+        <form *ngIf="modoEdicionSkill == i" class="modo-edicion" #f="ngForm"
+          (ngSubmit)="f.form.valid && editarHabilidad(habilidad, nivel)">
+
+          <div class="estrellas">
+            <div [innerHTML]="estrellas[nivel]"></div>
+            <input class="range" type="range" name="nivel" [(ngModel)]="nivel" min="1" max="10" required>
+          </div>
+          <div>
+            <button type="submit">
+              <i class="bi bi-check-circle pointer"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      <form *ngIf="agregarSkill" class="habilidad" #f="ngForm"
+        (ngSubmit)="f.form.valid && agregarHabilidad(nuevaHabilidad, nuevaHabilidadNivel)">
+        <input class="nuevaHab" type="text" name="nueva-habilidad" placeholder="Nueva habilidad" required
+          [(ngModel)]="nuevaHabilidad">
+        <div class="estrellas">
+          <div [innerHTML]="estrellas[nuevaHabilidadNivel]"></div>
+          <input class="range" type="range" name="niveloide" [(ngModel)]="nuevaHabilidadNivel" min="1" max="10"
+            required>
+        </div>
+        <button type="submit">
+          <i class="bi bi-check-circle pointer"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+.estrellas i {
+    color: white;
+    margin-left: 6px;
+}
+
+.nuevaHab {
+    font-size: calc(1.3rem + .6vw);
+    background-color: inherit;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #fff;
+}
+
+.nuevaHab::placeholder {
+    color: #f3c599;
+}
+
+.range::-webkit-slider-runnable-track {
+    background: #e17000;
+    outline: none;
+    border-radius: 12px;
+    box-shadow: inset 0 0 5px #f3c599;
+}
+
+.agregar {
+    display: flex;
+    flex-flow: row;
+}

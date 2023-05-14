@@ -1,0 +1,32 @@
+<header class="container">
+    <div class="header-principal">
+        <div class="logo-principal">
+            <img src="../../assets/LogoArgentinaPrograma.png">
+            <h1>#YoProgramo</h1>
+        <div class="container">
+            <a href="https://www.linkedin.com/in/santiago-javier-gomez-a22188216/"><i class="bi bi-linkedin"></i></a>
+        </div>
+        </div>
+        <div class="container cerrar-sesion">
+            <button class="btn btn-danger btn-cerrars" *ngIf="logIn(); else noLogIn" (click)="cerrarSesion()">
+              <p>Cerrar sesión</p>
+            </button>
+            <ng-template #noLogIn>
+                <button class="btn btn-success btn-iniciars" (click)="iniciarSesion()">
+                    <p>Iniciar sesión</p>
+                </button>
+            </ng-template>
+            <!-- <i class="bi bi-instagram"></i> -->
+        </div>
+    </div>
+    <div class="header-banner">
+        <div class="banner-container">
+            <img class="banner" [src]="fotoBanner" alt="Banner aleatorio">
+            <i class="bi bi-pencil-square pointer editar-banner" (click)="modal('foto-banner')" *ngIf="logIn()"></i>
+            <div class="container">
+                <img id="foto-perfil" [src]="fotoPerfil" alt="Foto de perfil">
+                <i class="bi bi-pencil-square pointer editar-foto" (click)="modal('foto-perfil')" *ngIf="logIn()"></i>
+            </div>
+        </div>
+    </div>
+</header>

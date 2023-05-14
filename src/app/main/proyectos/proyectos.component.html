@@ -1,0 +1,49 @@
+<section class="container proyecto">
+    <div class="container">
+      <div class="titulo">
+        <h2>Proyectos</h2>
+        <div class="botones">
+          <i class="bi bi-plus-square pointer" (click)="modoAgregarProyecto = !modoAgregarProyecto; cancelarEdicion()" *ngIf="logIn()"></i>
+          <i class="bi bi-pencil-square pointer" (click)="modoEditarProyecto = !modoEditarProyecto; lenguajesProyecto = ''; descripcionProyecto = ''; nombreProyecto = ''; enlaceProyecto = ''; modoAgregarProyecto = false" *ngIf="logIn()"></i>
+        </div>
+      </div>
+      <div class="container">
+        <div *ngFor="let proyecto of proyectos; let i = index">
+          <div class="proyecto" *ngIf="!(modoEdicion == i)">
+            <div>
+              <h3 name="nombre-proyecto"><a href="{{proyecto.enlace}}">{{proyecto.nombre}}</a></h3>
+              <h5 name="descripcion-proyecto">{{proyecto.descripcion}}</h5>
+              <h6 name="lenguajes-proyecto">{{proyecto.lenguajes}}</h6>
+            </div>
+            <div class="botones" *ngIf="!(modoEdicion == i)">
+              <i class="bi bi-pencil-square pointer" *ngIf="modoEditarProyecto"
+                (click)="modoEdicion = i; lenguajesProyecto = proyecto.lenguajes; descripcionProyecto = proyecto.descripcion; nombreProyecto = proyecto.nombre; enlaceProyecto = proyecto.enlace"></i>
+              <i class="bi bi-trash3 pointer" (click)="eliminarProyecto(proyecto)" *ngIf="modoEditarProyecto"></i>
+            </div>
+          </div>
+          <form class="proyecto" *ngIf="modoEdicion == i" #f="ngForm" (ngSubmit)="f.form.valid && editarProyecto(proyecto, nombreProyecto, enlaceProyecto, descripcionProyecto, lenguajesProyecto)">
+            <div>
+              <input type="text" name="nombre-proyecto" [(ngModel)]="nombreProyecto" class="nombre-proyecto" placeholder="Nombre del proyecto" required>
+              <input type="text" name="enlace-proyecto" [(ngModel)]="enlaceProyecto" class="enlace-proyecto" placeholder="Enlace del proyecto" required>
+              <input type="text" name="descripcion-proyecto" [(ngModel)]="descripcionProyecto" class="descripcion-proyecto" placeholder="Descripción" required size="255">
+              <input type="text" name="lenguajes-proyecto" [(ngModel)]="lenguajesProyecto" class="lenguajes-proyecto" placeholder="Lenguajes utilizados" required>
+            </div>
+            <button type="submit">
+              <i class="bi bi-check-circle pointer"></i>
+            </button>
+          </form>
+        </div>
+        <form class="proyecto" #f="ngForm" (ngSubmit)="f.form.valid && agregarProyecto(nombreProyecto, enlaceProyecto, descripcionProyecto, lenguajesProyecto)" *ngIf="modoAgregarProyecto">
+          <div>
+            <input type="text" name="nombre-proyecto" [(ngModel)]="nombreProyecto" *ngIf="modoAgregarProyecto" class="nombre-proyecto" placeholder="Nombre del proyecto" required>
+            <input type="text" name="enlace-proyecto" [(ngModel)]="enlaceProyecto" *ngIf="modoAgregarProyecto" class="enlace-proyecto" placeholder="Enlace del proyecto" required size="255">
+            <input type="text" name="descripcion-proyecto" [(ngModel)]="descripcionProyecto" *ngIf="modoAgregarProyecto" class="descripcion-proyecto" placeholder="Descripción" required size="255">
+            <input type="text" name="lenguajes-proyecto" [(ngModel)]="lenguajesProyecto" *ngIf="modoAgregarProyecto" class="lenguajes-proyecto" placeholder="Lenguajes utilizados" required>
+          </div>
+          <button type="submit">
+            <i class="bi bi-check-circle pointer"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>

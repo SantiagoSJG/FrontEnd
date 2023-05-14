@@ -1,0 +1,53 @@
+<section class="container experiencia">
+  <div class="container">
+    <div class="titulo">
+      <h2>Experiencia</h2>
+      <div class="botones">
+        <i class="bi bi-plus-square pointer" (click)="modoAgregarExperiencia = !modoAgregarExperiencia; formatearCampos(); cancelarEdicion()" *ngIf="logIn()"></i>
+        <i class="bi bi-pencil-square pointer" (click)="modoEditarExperiencia = !modoEditarExperiencia; modoAgregarExperiencia = false" *ngIf="logIn()"></i>
+      </div>
+    </div>
+    <div class="container">
+      <div *ngFor="let experiencia of experiencias; let i = index">
+        <div class="experiencia" *ngIf="!(modoEdicion == i)">
+          <div>
+            <h3 name="tipo-experiencia">{{experiencia.tipo}}</h3>
+            <h5 name="nombre-experiencia">{{experiencia.nombre}}</h5>
+            <h6 name="periodo-experiencia">{{experiencia.inicioPeriodo}}-{{experiencia.finPeriodo}}</h6>
+          </div>
+          <div class="botones">
+            <i class="bi bi-pencil-square pointer" *ngIf="modoEditarExperiencia"
+              (click)="modoEdicion = i; cambiarCampos(experiencia)"></i>
+            <i class="bi bi-trash3 pointer" (click)="eliminarExperiencia(experiencia)" *ngIf="modoEditarExperiencia"></i>
+          </div>
+        </div>
+        <form class="experiencia" *ngIf="modoEdicion == i" #f="ngForm" (ngSubmit)="f.form.valid && editarExperiencia(experiencia, tipoExperiencia, nombreExperiencia, periodoInicioExperiencia, periodoFinExperiencia)">
+          <div>
+            <input type="text" value="" name="tipo-experiencia" [(ngModel)]="tipoExperiencia" class="tipo-experiencia" placeholder="Tipo de educación" required>
+            <input type="text" value="" name="nombre-experiencia" [(ngModel)]="nombreExperiencia" class="nombre-experiencia" placeholder="Nombre de la institución" required>
+            <label for="" class="form-group periodo">
+              <input type="text" value="" name="periodo-inicio-experiencia" [(ngModel)]="periodoInicioExperiencia" class="periodo-experiencia" placeholder="Inicio" required>
+              <input type="text" value="" name="periodo-fin-experiencia" [(ngModel)]="periodoFinExperiencia" class="periodo-experiencia" placeholder="Fin">
+            </label>
+          </div>
+          <button type="submit">
+            <i class="bi bi-check-circle pointer"></i>
+          </button>
+        </form>
+      </div>
+      <form class="experiencia" #f="ngForm" (ngSubmit)="f.form.valid && agregarExperiencia(tipoExperiencia, nombreExperiencia, periodoInicioExperiencia, periodoFinExperiencia)" *ngIf="modoAgregarExperiencia">
+        <div>
+          <input type="text" value="" name="tipo-experiencia" [(ngModel)]="tipoExperiencia" *ngIf="agregarExperiencia" class="tipo-experiencia" placeholder="Tipo de experiencia, cargo" required>
+          <input type="text" value="" name="nombre-experiencia" [(ngModel)]="nombreExperiencia" *ngIf="agregarExperiencia" class="nombre-experiencia" placeholder="Nombre de la institución" required>
+          <label for="" class="form-group periodo">
+            <input type="text" value="" name="periodo-inicio-experiencia" [(ngModel)]="periodoInicioExperienciaNew" *ngIf="agregarExperiencia" class="periodo-experiencia" placeholder="Inicio" required>
+            <input type="text" value="" name="periodo-fin-experiencia" [(ngModel)]="periodoFinExperienciaNew" *ngIf="agregarExperiencia" class="periodo-experiencia" placeholder="Fin">
+          </label>
+        </div>
+        <button type="submit">
+          <i class="bi bi-check-circle pointer"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

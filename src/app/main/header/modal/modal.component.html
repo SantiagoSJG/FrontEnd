@@ -1,0 +1,30 @@
+<div class="modal" (mouseenter)="cerrarModal()">
+    <div class="ventana" [ngClass]="{'ventanaHead': id === 'foto-banner'}">
+        <h3>Cambiar {{valorId}}</h3>
+        <i class="bi bi-x-circle pointer cerrar" [routerLink]="['']"></i>
+        
+        <!-- <div class="container-imagen">
+            <img class="nueva-imagen" src="../../../assets/IMG_20220911_232107686_HDR.jpg" alt="">
+        </div> -->
+
+        <div class="container-imagen" [ngClass]="{'containerHead': id === 'foto-banner'}">
+            <img class="nueva-imagen" id="nueva-imagen" #nuevaImagen [ngClass]="{'imagenHead': id === 'foto-banner'}">
+        </div>
+
+        <div>
+            <!-- <p class="recom-nueva-foto" *ngIf="recomendacionImagen">Se recomienda una relación de aspecto 1:1</p> -->
+            <p class="error-nueva-foto" *ngIf="errorImagen">Error: formato invalido</p>
+            <p class="error-nueva-foto" *ngIf="errorImagen">Debe ser formato de imagen jpg, jpeg o png</p>
+        </div>
+
+        <label class="subir pointer">
+            <input type="file" name="" accept="image/png, image/jpeg, image/jpg" (change)="capturarImagen($event)" #archivoInput>
+            <p>Subir foto</p>
+            <i class="bi bi-upload subir"></i>
+        </label>
+
+        <label class="pointer cambiar">
+            <i class="bi bi-check-circle" (click)="subirImagen()"></i>
+        </label>
+    </div>
+</div>

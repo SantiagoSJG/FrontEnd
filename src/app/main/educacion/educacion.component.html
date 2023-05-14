@@ -1,0 +1,53 @@
+<section class="container educacion">
+    <div class="container">
+      <div class="titulo">
+        <h2>Educación</h2>
+        <div class="botones">
+          <i class="bi bi-plus-square pointer" (click)="modoAgregarEducacion = !modoAgregarEducacion; formatearCampos(); cancelarEdicion()" *ngIf="logIn()"></i>
+          <i class="bi bi-pencil-square pointer" (click)="modoEditarEducacion = !modoEditarEducacion; modoAgregarEducacion = false" *ngIf="logIn()"></i>
+        </div>
+      </div>
+      <div class="container">
+        <div *ngFor="let edu of educacion; let i = index">
+          <div class="educacion" *ngIf="!(modoEdicion == i)">
+            <div>
+              <h3 name="tipo-institucion">{{edu.tipo}}</h3>
+              <h5 name="nombre-institucion">{{edu.nombre}}</h5>
+              <h6 name="periodo-institucion">{{edu.inicioPeriodo}}-{{edu.finPeriodo}}</h6>
+            </div>
+            <div class="botones">
+              <i class="bi bi-pencil-square pointer" *ngIf="modoEditarEducacion"
+                (click)="modoEdicion = i; cambiarCampos(edu)"></i>
+              <i class="bi bi-trash3 pointer" (click)="eliminarEducacion(edu)" *ngIf="modoEditarEducacion"></i>
+            </div>
+          </div>
+          <form class="educacion" *ngIf="modoEdicion == i" #f="ngForm" (ngSubmit)="f.form.valid && editarEducacion(edu, tipoInstitucion, nombreInstitucion, periodoInicioInstitucion, periodoFinInstitucion)">
+            <div>
+              <input type="text" value="" name="tipo-institucion" [(ngModel)]="tipoInstitucion" class="tipo-institucion" placeholder="Tipo de educación" required>
+              <input type="text" value="" name="nombre-institucion" [(ngModel)]="nombreInstitucion" class="nombre-institucion" placeholder="Nombre de la institución" required>
+              <label for="" class="form-group periodo">
+                <input type="text" value="" name="periodo-inicio-institucion" [(ngModel)]="periodoInicioInstitucionNew" class="periodo-institucion" placeholder="Inicio" required>
+                <input type="text" value="" name="periodo-fin-institucion" [(ngModel)]="periodoFinInstitucionNew" class="periodo-institucion" placeholder="Fin">
+              </label>
+            </div>
+            <button type="submit">
+              <i class="bi bi-check-circle pointer"></i>
+            </button>
+          </form>
+        </div>
+        <form class="educacion" #f="ngForm" (ngSubmit)="f.form.valid && agregarEducacion(tipoInstitucion, nombreInstitucion, periodoInicioInstitucion, periodoFinInstitucion)" *ngIf="modoAgregarEducacion">
+          <div>
+            <input type="text" value="" name="tipo-institucion" [(ngModel)]="tipoInstitucion" *ngIf="agregarEducacion" class="tipo-institucion" placeholder="Tipo de educación" required>
+            <input type="text" value="" name="nombre-institucion" [(ngModel)]="nombreInstitucion" *ngIf="agregarEducacion" class="nombre-institucion" placeholder="Nombre de la institución" required>
+            <label for="" class="form-group periodo">
+              <input type="text" value="" name="periodo-inicio-institucion" [(ngModel)]="periodoInicioInstitucion" *ngIf="agregarEducacion" class="periodo-institucion" placeholder="Inicio" required>
+              <input type="text" value="" name="periodo-fin-institucion" [(ngModel)]="periodoFinInstitucion" *ngIf="agregarEducacion" class="periodo-institucion" placeholder="Fin">
+            </label>
+          </div>
+          <button type="submit">
+            <i class="bi bi-check-circle pointer"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>

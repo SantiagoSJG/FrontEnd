@@ -1,0 +1,58 @@
+.experiencia input::placeholder {
+    color: #f3c599;
+}
+
+.tipo-experiencia {
+    font-size: calc(1.3rem + .6vw);
+}
+
+.nombre-experiencia {
+    font-size: 1.25rem;
+}
+
+.periodo-experiencia {
+    font-size: 1rem;
+}
+
+.tipo-experiencia, .nombre-experiencia, .periodo-experiencia {
+    display: block;
+    outline: none;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    background-color: inherit;
+    border-bottom: 2px solid #fff;
+    margin: 12px 0;
+}
+
+.periodo {
+    display: flex;
+    width: 100%;
+    /* justify-content: flex-end; */
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.periodo input {
+    width: 40%;
+    display: block;
+    justify-self: flex-start;
+    /* width: 29%; */
+    /* margin: 0 6px; */
+}
+
+.experiencia {
+    border-bottom: 1px #f3c599 solid;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.experiencia .botones {
+    font-size: 1.5rem;
+}
+
+.container .experiencia .botones i {
+    margin-left: 6px;
+}
