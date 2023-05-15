@@ -11,18 +11,18 @@ export class EducacionService {
   constructor(private http: HttpClient) { }
 
   getEducacion():Observable<Educacion[]> {
-      return this.http.get<Educacion[]>('http://localhost:8080/educacion/traer')
+      return this.http.get<Educacion[]>('https://portfoliobackend-cfdi.onrender.com/educacion/traer')
   }
 
   postEducacion(educacion: NuevaEducacion):Observable<NuevaEducacion> {
-      return this.http.post<NuevaEducacion>('http://localhost:8080/educacion/agregar', educacion)
+      return this.http.post<NuevaEducacion>('https://portfoliobackend-cfdi.onrender.com/educacion/agregar', educacion)
   }
 
   deleteEducacion(id: number):Observable<Educacion> {
-      return this.http.delete<Educacion>(`http://localhost:8080/educacion/eliminar/${id}`)
+      return this.http.delete<Educacion>(`https://portfoliobackend-cfdi.onrender.com/educacion/eliminar/${id}`)
   }
 
   putEducacion(educacion: Educacion, id: number):Observable<Educacion> {
-      return this.http.put<Educacion>(`http://localhost:8080/educacion/editar/${id}`, educacion)
+      return this.http.put<Educacion>(`https://portfoliobackend-cfdi.onrender.com/educacion/editar/${id}`, educacion)
   }
 }

@@ -11,18 +11,18 @@ export class ProyectoService {
   constructor(private http: HttpClient) { }
 
   getProyectos():Observable<Proyecto[]> {
-      return this.http.get<Proyecto[]>('http://localhost:8080/proyectos/traer')
+      return this.http.get<Proyecto[]>('https://portfoliobackend-cfdi.onrender.com/proyectos/traer')
   }
 
   postProyecto(proyecto: NuevoProyecto):Observable<NuevoProyecto> {
-      return this.http.post<NuevoProyecto>('http://localhost:8080/proyectos/agregar', proyecto)
+      return this.http.post<NuevoProyecto>('https://portfoliobackend-cfdi.onrender.com/proyectos/agregar', proyecto)
   }
 
   deleteProyecto(id: number):Observable<Proyecto> {
-      return this.http.delete<Proyecto>(`http://localhost:8080/proyectos/eliminar/${id}`)
+      return this.http.delete<Proyecto>(`https://portfoliobackend-cfdi.onrender.com/proyectos/eliminar/${id}`)
   }
 
   putProyecto(proyecto: Proyecto, id: number):Observable<Proyecto> {
-      return this.http.put<Proyecto>(`http://localhost:8080/proyectos/editar/${id}`, proyecto)
+      return this.http.put<Proyecto>(`https://portfoliobackend-cfdi.onrender.com/proyectos/editar/${id}`, proyecto)
   }
 }

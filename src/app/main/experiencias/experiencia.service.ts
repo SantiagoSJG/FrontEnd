@@ -11,18 +11,18 @@ export class ExperienciaService {
   constructor(private http: HttpClient) { }
 
   getExperiencias():Observable<Experiencia[]> {
-      return this.http.get<Experiencia[]>('http://localhost:8080/experiencias/traer')
+      return this.http.get<Experiencia[]>('https://portfoliobackend-cfdi.onrender.com/experiencias/traer')
   }
 
   postExperiencia(experiencia: NuevaExperiencia):Observable<NuevaExperiencia> {
-      return this.http.post<NuevaExperiencia>('http://localhost:8080/experiencias/agregar', experiencia)
+      return this.http.post<NuevaExperiencia>('https://portfoliobackend-cfdi.onrender.com/experiencias/agregar', experiencia)
   }
 
   deleteExperiencia(id: number):Observable<Experiencia> {
-      return this.http.delete<Experiencia>(`http://localhost:8080/experiencias/eliminar/${id}`)
+      return this.http.delete<Experiencia>(`https://portfoliobackend-cfdi.onrender.com/experiencias/eliminar/${id}`)
   }
 
   putExperiencia(experiencia: Experiencia, id: number):Observable<Experiencia> {
-      return this.http.put<Experiencia>(`http://localhost:8080/experiencias/editar/${id}`, experiencia)
+      return this.http.put<Experiencia>(`https://portfoliobackend-cfdi.onrender.com/experiencias/editar/${id}`, experiencia)
   }
 }

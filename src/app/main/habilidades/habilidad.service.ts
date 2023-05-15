@@ -17,18 +17,18 @@ export class SkillService {
     // ]
 
     getHabilidades():Observable<Skill[]> {
-        return this.http.get<Skill[]>('http://localhost:8080/habilidades/traer')
+        return this.http.get<Skill[]>('https://portfoliobackend-cfdi.onrender.com/habilidades/traer')
     }
 
     postHabilidad(habilidad: NuevaHabilidad):Observable<NuevaHabilidad> {
-        return this.http.post<NuevaHabilidad>('http://localhost:8080/habilidades/agregar', habilidad)
+        return this.http.post<NuevaHabilidad>('https://portfoliobackend-cfdi.onrender.com/habilidades/agregar', habilidad)
     }
 
     deleteHabilidad(id: number):Observable<Skill> {
-        return this.http.delete<Skill>(`http://localhost:8080/habilidades/eliminar/${id}`)
+        return this.http.delete<Skill>(`https://portfoliobackend-cfdi.onrender.com/habilidades/eliminar/${id}`)
     }
 
     putHabilidad(habilidad: Skill, id: number):Observable<Skill> {
-        return this.http.put<Skill>(`http://localhost:8080/habilidades/editar/${id}`, habilidad)
+        return this.http.put<Skill>(`https://portfoliobackend-cfdi.onrender.com/habilidades/editar/${id}`, habilidad)
     }
 }
