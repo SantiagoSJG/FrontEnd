@@ -21,13 +21,13 @@ export class HeaderComponent implements OnInit {
     fotoBanner: string;
 
     ngOnInit() {
-      this.http.get('http://localhost:8080/media/foto-perfil', { responseType: 'blob' })
+      this.http.get('https://portfoliobackend-cfdi.onrender.com/media/foto-perfil', { responseType: 'blob' })
       .subscribe(response => {
         const blob = new Blob([response], { type: 'image/*' });
         this.fotoPerfil = URL.createObjectURL(blob);
       });
       
-      this.http.get('http://localhost:8080/media/foto-banner', { responseType: 'blob' })
+      this.http.get('https://portfoliobackend-cfdi.onrender.com/media/foto-banner', { responseType: 'blob' })
       .subscribe(response => {
         const blob = new Blob([response], { type: 'image/*' });
         this.fotoBanner = URL.createObjectURL(blob);
